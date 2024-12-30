@@ -2,7 +2,6 @@ package observer_pattern;
 
 import java.util.ArrayList;
 import java.util.List;
-import observer_pattern.Observer;
 
 public class WeatherData implements Subject{
 
@@ -25,7 +24,7 @@ public class WeatherData implements Subject{
 
     public void notifyObservers() {
         for (Observer observer : observers) {
-            observer.update(temperature, humidity, pressure);
+            observer.update();
         }
     }
 
@@ -37,22 +36,18 @@ public class WeatherData implements Subject{
     }
 
     public void measurementsChanged() {
-
-        float temp = getTemperature();
-        float humidity = getHumidity();
-        float pressure = getPressure();
-
+        notifyObservers();
     }
 
-    private float getPressure() {
+    public float getPressure() {
         return pressure;
     }
 
-    private float getHumidity() {
+    public float getHumidity() {
         return humidity;
     }
 
-    private float getTemperature() {
+    public float getTemperature() {
         return temperature;
     }
 }
